@@ -1,0 +1,17 @@
+{
+    "name": "RGD.Core.Entries.Runtime",
+    "rootNamespace": "RGD.Core.Entries",
+    "references": [
+        "GUID:6e90c788fce934b41917e54145648c72",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
