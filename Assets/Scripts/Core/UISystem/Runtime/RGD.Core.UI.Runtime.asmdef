@@ -1,10 +1,9 @@
 {
-    "name": "RGD.Core.Entries.Runtime",
-    "rootNamespace": "RGD.Core.Entries",
+    "name": "RGD.Core.UI.Runtime",
+    "rootNamespace": "RGD.Core.UI",
     "references": [
         "GUID:6e90c788fce934b41917e54145648c72",
-        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
-        "GUID:2fc7bff1e343ec8448badbe8c1ddace2"
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

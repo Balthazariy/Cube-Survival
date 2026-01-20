@@ -1,3 +1,5 @@
+using RGD.Core.UI;
+
 namespace RGD.Core.Entries
 {
     public class BootEntry : LifetimeScope
@@ -11,6 +13,7 @@ namespace RGD.Core.Entries
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<ISceneSystem, SceneSystem>(Lifetime.Scoped);
+            builder.Register<IUISystem, UISystem>(Lifetime.Scoped);
             builder.RegisterEntryPoint<BootUsage>();
         }
     }
