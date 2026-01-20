@@ -1,19 +1,19 @@
 namespace RGD.Core.Entries
 {
     [UnityEngine.Scripting.Preserve]
-    public class BootUsage :  IStartable, IDisposable
+    public class SplashUsage:    IStartable, IDisposable
     {
         private readonly ISceneSystem _sceneSystem;
         
         [UnityEngine.Scripting.Preserve]
-        public BootUsage(ISceneSystem sceneSystem)
+        public SplashUsage(ISceneSystem sceneSystem)
         {
             _sceneSystem = sceneSystem;
         }
 
         public void Start()
         {
-            _sceneSystem.LoadScene(SceneIds.SplashSceneId);
+            _sceneSystem.LoadScene(SceneIds.LoadingSceneId);
         }
 
         public void Dispose()
