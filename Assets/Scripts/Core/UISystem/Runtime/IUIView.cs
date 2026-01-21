@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace RGD.Core.UI
 {
@@ -10,7 +9,7 @@ namespace RGD.Core.UI
         bool IsVisible { get; }
     }
 
-    internal interface IUIViewInternal : IUIView, IDisposable
+    public interface IUIViewInternal : IUIView, IDisposable
     {
         void Initialize();
     }

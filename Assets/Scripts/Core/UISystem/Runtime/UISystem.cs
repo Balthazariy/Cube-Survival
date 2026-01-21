@@ -9,8 +9,37 @@ namespace RGD.Core.UI
     {
         private Dictionary<Type, IUIViewInternal> _pageViews = new ();
         private Dictionary<Type, IUIViewInternal> _popupViews = new ();
+
+        public void Initialize()
+        {
+            foreach (var pageView in _pageViews)
+            {
+                pageView.Value.Initialize();
+            }
+            
+            foreach (var popupView in _popupViews)
+            {
+                popupView.Value.Initialize();
+            }
+        }
         
-        internal void RegisterPage<T>(T view) where T : IUIViewInternal
+        public void Dispose()
+        {
+            foreach (var pageView in _pageViews)
+            {
+                pageView.Value.Dispose();
+            }
+            
+            foreach (var popupView in _popupViews)
+            {
+                popupView.Value.Dispose();
+            }
+            
+            _pageViews.Clear();
+            _popupViews.Clear();
+        }
+        
+        public void RegisterPage<T>(T view) where T : IUIViewInternal
         {
             Type type = typeof(T);
 
@@ -22,7 +51,7 @@ namespace RGD.Core.UI
             _pageViews.Add(type, view);
         }
 
-        internal void RegisterPopup<T>(T view) where T : IUIViewInternal
+        public void RegisterPopup<T>(T view) where T : IUIViewInternal
         {
             Type type = typeof(T);
             
@@ -76,35 +105,6 @@ namespace RGD.Core.UI
             {
                 popupView.Value.Hide();
             }
-        }
-
-        public void Initialize()
-        {
-            foreach (var pageView in _pageViews)
-            {
-                pageView.Value.Initialize();
-            }
-            
-            foreach (var popupView in _popupViews)
-            {
-                popupView.Value.Initialize();
-            }
-        }
-        
-        public void Dispose()
-        {
-            foreach (var pageView in _pageViews)
-            {
-                pageView.Value.Dispose();
-            }
-            
-            foreach (var popupView in _popupViews)
-            {
-                popupView.Value.Dispose();
-            }
-            
-            _pageViews.Clear();
-            _popupViews.Clear();
         }
     }
 }

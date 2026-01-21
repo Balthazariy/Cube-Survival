@@ -6,14 +6,14 @@ namespace RGD.Core.Entries
     {
         protected override void Awake()
         {
-            base.Awake();
             DontDestroyOnLoad(gameObject);
+            base.Awake();
         }
 
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<ISceneSystem, SceneSystem>(Lifetime.Scoped);
-            builder.Register<IUISystem, UISystem>(Lifetime.Scoped);
+            builder.Register<UISystem>(Lifetime.Singleton).As<IUISystem>().AsSelf();
             builder.RegisterEntryPoint<BootUsage>();
         }
     }
