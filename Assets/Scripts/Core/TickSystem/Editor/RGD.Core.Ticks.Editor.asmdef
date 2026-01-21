@@ -1,0 +1,16 @@
+{
+    "name": "RGD.Core.Ticks.Editor",
+    "rootNamespace": "RGD.Core.Ticks",
+    "references": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
