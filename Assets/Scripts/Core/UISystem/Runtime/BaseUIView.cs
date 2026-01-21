@@ -3,34 +3,43 @@ using UnityEngine;
 
 namespace RGD.Core.UI
 {
-    public class BaseUIView<TModel> where TModel : BaseUIViewModel, IDisposable, IUIView
+    public abstract class BaseUIView<TViewModel> : IUIViewInternal where TViewModel : BaseUIViewModel
     {
-        protected TModel ViewModel;
-        protected GameObject SelfObject;
+        protected TViewModel ViewModel { get; private set; }
+        protected GameObject SelfObject { get; private set; }
         
-        public BaseUIView(string elementName)
+        public bool IsVisible { get; private set; }
+        
+        public BaseUIView(string elementName, TViewModel viewModel)
         {
-            SelfObject = GameObject.Find(elementName);
-            
-            ViewModel = (TModel)Activator.CreateInstance(typeof(TModel));
+            ViewModel = viewModel;
+            SelfObject = FindSelfObject(elementName);
         }
         
         public virtual void Initialize()
         {
             ViewModel.Initialize();
+            Hide();
         }
 
         public virtual void Dispose()
         {
             ViewModel.Dispose();
         }
+
+        private GameObject FindSelfObject(string selfObjectName)
+        {
+            return GameObject.Find(selfObjectName);
+        }
         
         public virtual void Show()
         {
+            SelfObject.SetActive(true);
         }
         
         public virtual void Hide()
         {
+            SelfObject.SetActive(false);
         }
     }
 }

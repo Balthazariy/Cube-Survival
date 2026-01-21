@@ -8,5 +8,6 @@ namespace RGD.Core.UI
         public void HidePage<T>() where T : IUIView;
         public void ShowPopup<T>() where T : IUIView;
         public void HidePopup<T>() where T : IUIView;
+        public void HideAllPopups();
     }
 }
