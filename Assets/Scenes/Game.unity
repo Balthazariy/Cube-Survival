@@ -554,7 +554,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 668541258}
-  - component: {fileID: 668541259}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -579,19 +578,6 @@ Transform:
   - {fileID: 1051404974818771968}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &668541259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668541257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02fe3701273602c4e80ab0812237c4c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestScript
-  config: {fileID: 11400000, guid: 250a2164e2db5dd48ba410e4a812e3fe, type: 2}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1868218898}
+  - component: {fileID: 1868218899}
   m_Layer: 0
   m_Name: EntryPoint
   m_TagString: Untagged
@@ -1214,6 +1201,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1868218899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868218897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c75e757bc0a9404999ae245e18e9828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RGD.Core.Entries.Runtime::RGD.Core.Entries.GameEntry
+  parentReference:
+    TypeName: RGD.Core.Entries.BootEntry
+  autoRun: 1
+  autoInjectGameObjects: []
 --- !u!1001 &1051404974818771967
 PrefabInstance:
   m_ObjectHideFlags: 0
