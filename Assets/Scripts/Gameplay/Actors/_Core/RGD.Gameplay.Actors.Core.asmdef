@@ -1,0 +1,18 @@
+{
+    "name": "RGD.Gameplay.Actors.Core",
+    "rootNamespace": "RGD.Gameplay.Actors.Core",
+    "references": [
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:11510164c4a1d6b4ba2ba4c207beddbc",
+        "GUID:382af285cc4f59046b86cf092372e2a7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
