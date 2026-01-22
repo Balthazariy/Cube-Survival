@@ -1,0 +1,7 @@
+﻿<Solution>
+  <Project Path="RGD.Core.UI.Runtime.csproj" />
+  <Project Path="RGD.Core.Entries.Runtime.csproj" />
+  <Project Path="RGD.Gameplay.UI.Runtime.csproj" />
+  <Project Path="RGD.Core.Scenes.Runtime.csproj" />
+  <Project Path="RGD.Core.Ticks.Runtime.csproj" />
+</Solution>

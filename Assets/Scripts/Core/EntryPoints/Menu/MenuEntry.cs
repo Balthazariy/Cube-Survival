@@ -1,4 +1,3 @@
-using RGD.Core.UI;
 using RGD.Gameplay.UI.Pages.MainMenuPage;
 
 namespace RGD.Core.Entries
@@ -17,13 +16,12 @@ namespace RGD.Core.Entries
             
             builder.RegisterBuildCallback(container =>
             {
-                var uiSystem = container.Resolve<UISystem>();
+                var uiSystem = container.Resolve<UISystem>(); 
                 
                 var mainMenuPage = container.Resolve<MainMenuPageView>(); // TODO: Replace
                 
                 uiSystem.RegisterPage(mainMenuPage);
-                uiSystem.Initialize();
-                
+
                 uiSystem.ShowPage<MainMenuPageView>();
             });
         }
@@ -32,13 +30,6 @@ namespace RGD.Core.Entries
         {
             builder.Register<MainMenuPageViewModel>(Lifetime.Singleton);
             builder.Register<MainMenuPageView>(Lifetime.Singleton).WithParameter("MainMenuPage");
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            
-            
         }
     }
 }

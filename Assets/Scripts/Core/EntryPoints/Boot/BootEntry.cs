@@ -1,6 +1,3 @@
-using RGD.Core.Ticks;
-using RGD.Core.UI;
-
 namespace RGD.Core.Entries
 {
     public class BootEntry : LifetimeScope
@@ -13,9 +10,24 @@ namespace RGD.Core.Entries
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<SceneSystem>(Lifetime.Singleton).As<ISceneSystem>().AsSelf();
-            builder.Register<TickSystem>(Lifetime.Singleton).As<ITickSystem>().AsSelf();
-            builder.Register<UISystem>(Lifetime.Singleton).As<IUISystem>().AsSelf();
+            builder.Register<SceneSystem>(Lifetime.Singleton)
+                .As<ISceneSystem>()
+                .As<IInitializable>()
+                .As<IDisposable>();
+            
+            builder.Register<TickSystem>(Lifetime.Singleton)
+                .As<ITickSystem>()
+                .As<IInitializable>()
+                .As<IDisposable>()
+                .As<ITickable>()
+                .As<IFixedTickable>()
+                .As<ILateTickable>();
+            
+            builder.Register<UISystem>(Lifetime.Singleton)
+                .As<IUISystem>()
+                .As<IInitializable>()
+                .As<IDisposable>();
+            
             builder.RegisterEntryPoint<BootUsage>();
         }
     }

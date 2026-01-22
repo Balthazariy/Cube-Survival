@@ -1,18 +1,14 @@
-using RGD.Core.Ticks;
-
 namespace RGD.Core.Entries
 {
     [UnityEngine.Scripting.Preserve]
     public class BootUsage :  IStartable, IDisposable
     {
         private readonly ISceneSystem _sceneSystem;
-        private readonly TickSystem _tickSystem;
         
         [UnityEngine.Scripting.Preserve]
-        public BootUsage(ISceneSystem sceneSystem, TickSystem tickSystem)
+        public BootUsage(ISceneSystem sceneSystem)
         {
             _sceneSystem = sceneSystem;
-            _tickSystem = tickSystem;
         }
 
         public void Start()
