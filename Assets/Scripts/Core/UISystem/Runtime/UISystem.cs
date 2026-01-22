@@ -7,103 +7,107 @@ namespace RGD.Core.UI
 {
     public class UISystem : IUISystem, IDisposable, IInitializable
     {
-        private Dictionary<Type, IUIViewInternal> _pageViews = new ();
-        private Dictionary<Type, IUIViewInternal> _popupViews = new ();
+        private HashSet<IUIViewInternal> _pageViews = new();
+        private HashSet<IUIViewInternal> _lazyPageViews = new();
+        private HashSet<IUIViewInternal> _popupViews = new();
+        private HashSet<IUIViewInternal> _lazyPopupViews = new();
 
         public void Initialize()
         {
-            foreach (var pageView in _pageViews)
-            {
-                pageView.Value.Initialize();
-            }
-            
-            foreach (var popupView in _popupViews)
-            {
-                popupView.Value.Initialize();
-            }
         }
-        
+
         public void Dispose()
         {
             foreach (var pageView in _pageViews)
             {
-                pageView.Value.Dispose();
+                pageView.Dispose();
             }
-            
+
             foreach (var popupView in _popupViews)
             {
-                popupView.Value.Dispose();
+                popupView.Dispose();
             }
-            
+
             _pageViews.Clear();
             _popupViews.Clear();
+            _lazyPageViews.Clear();
+            _lazyPopupViews.Clear();
         }
-        
+
         public void RegisterPage<T>(T view) where T : IUIViewInternal
         {
-            Type type = typeof(T);
-
-            if (_pageViews.ContainsKey(type))
+            if (!_pageViews.Add(view))
             {
-                throw new Exception($"UISystem: Page {type} is already registered");
+                throw new Exception($"UISystem: Page {view} is already registered");
             }
-            
-            _pageViews.Add(type, view);
+
+            if (!_lazyPageViews.Add(view))
+            {
+                throw new Exception($"UISystem: Page {view} is already registered");
+            }
         }
 
         public void RegisterPopup<T>(T view) where T : IUIViewInternal
         {
-            Type type = typeof(T);
-            
-            if (_popupViews.ContainsKey(type))
+            if (!_popupViews.Add(view))
             {
-                throw new Exception($"UISystem: Popup {type} is already registered");
+                throw new Exception($"UISystem: Popup {view} is already registered");
+            }
+        }
+
+        public void ShowPage<T>(T view) where T : IUIView
+        {
+            if (_lazyPageViews.Contains((IUIViewInternal)view))
+            {
+                ((IUIViewInternal)view).Initialize();
+                _lazyPageViews.Remove((IUIViewInternal)view);
             }
             
-            _popupViews.Add(type, view);
-        }
-        
-        public void ShowPage<T>() where T : IUIView
-        {
             foreach (var pageView in _pageViews)
             {
-                pageView.Value.Hide();
-                
-                if (pageView.Key == typeof(T))
+                pageView.Hide();
+
+                if (pageView == (IUIViewInternal)view)
                 {
-                    pageView.Value.Show();
+                    pageView.Show();
                 }
             }
         }
 
         public void HidePage<T>() where T : IUIView
         {
-            _pageViews[typeof(T)].Hide();
+            // GetPage<T>(view)
         }
 
-        public void ShowPopup<T>() where T : IUIView
+        public void ShowPopup<T>(T view) where T : IUIView
         {
+            if (_lazyPopupViews.Contains((IUIViewInternal)view))
+            {
+                ((IUIViewInternal)view).Initialize();
+                _lazyPopupViews.Remove((IUIViewInternal)view);
+            }
+            
             foreach (var popupView in _popupViews)
             {
-                popupView.Value.Hide();
-                
-                if (popupView.Key == typeof(T))
+                popupView.Hide();
+
+                if (popupView == (IUIViewInternal)view)
                 {
-                    popupView.Value.Show();
+                    popupView.Show();
                 }
             }
         }
 
         public void HidePopup<T>() where T : IUIView
         {
-            _popupViews[typeof(T)].Hide();
+            // _popupViews[typeof(T)].Hide();
         }
 
         public void HideAllPopups()
         {
             foreach (var popupView in _pageViews)
             {
-                popupView.Value.Hide();
+                popupView.Hide();
             }
         }
     }

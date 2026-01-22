@@ -22,7 +22,7 @@ namespace RGD.Core.Entries
                 
                 uiSystem.RegisterPage(mainMenuPage);
 
-                uiSystem.ShowPage<MainMenuPageView>();
+                uiSystem.ShowPage<MainMenuPageView>(mainMenuPage);
             });
         }
 

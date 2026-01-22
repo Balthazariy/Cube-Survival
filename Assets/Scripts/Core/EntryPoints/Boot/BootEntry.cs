@@ -1,3 +1,5 @@
+using RGD.Core.ObjectsLoading;
+
 namespace RGD.Core.Entries
 {
     public class BootEntry : LifetimeScope
@@ -26,6 +28,10 @@ namespace RGD.Core.Entries
             builder.Register<UISystem>(Lifetime.Singleton)
                 .As<IUISystem>()
                 .As<IInitializable>()
+                .As<IDisposable>().AsSelf();
+            
+            builder.Register<ObjectsLoadingSystem>(Lifetime.Singleton)
+                .As<IObjectsLoadingSystem>()
                 .As<IDisposable>();
             
             builder.RegisterEntryPoint<BootUsage>();
